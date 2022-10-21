@@ -48,13 +48,19 @@ function App() {
     },
   ])
 
-  function addTrack(newTrack){
-    if(playListTracks.find(savedTrack => savedTrack.id === newTrack.id)) {
+  function addTrack(track){
+    if(playListTracks.find(savedTrack => savedTrack.id === track.id)) {
       return playListTracks;
     }
     setPlayListTracks((prevState) => {
-      return [...prevState, newTrack]
+      return [...prevState, track]
     })
+  }
+
+  function removeTrack(track){
+    let tracks = playListTracks
+    tracks = tracks.filter(currentTrack => currentTrack.id !== track.id)
+    setPlayListTracks(tracks)
   }
 
   return (
@@ -67,6 +73,7 @@ function App() {
           <PlayList
             playListName={playListName}
             playListTracks={playListTracks}
+            onRemove={removeTrack}
           ></PlayList>
         </div>
       </div>

@@ -7,6 +7,7 @@ export default function TrackList(props) {
                     return <Track 
                         track={track} 
                         onAdd={props.onAdd}
+                        onRemove={props.onRemove}
                         isRemoval={props.isRemoval} 
                         key={track.id}>
                     </Track>

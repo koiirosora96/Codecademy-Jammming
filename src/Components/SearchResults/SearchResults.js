@@ -7,6 +7,7 @@ export default function SearchResults(props) {
             <TrackList 
                 tracks={props.searchResults}
                 onAdd={props.onAdd}
+                onRemove={props.onRemove}
                 isRemoval={false}
             ></TrackList>
         </div>

@@ -26,6 +26,36 @@ function App() {
       id:3
     },
   ])
+  const [playListName, setPlayListName] = useState("album of something!")
+  const [playListTracks, setPlayListTracks] = useState([
+    {
+      singerName: "Tiny Dancer",
+      artist: "Elton John",
+      album: "Madman Across The Water",
+      id:4
+    },
+    {
+      singerName: "Tiny Dancer",
+      artist: "Tim McGraw",
+      album: "Love Story",
+      id:5
+    },
+    {
+      singerName: "Tiny Dancer",
+      artist: "Rockabye Baby!",
+      album: "Lullaby Renditions of Elton John",
+      id:6
+    },
+  ])
+
+  function addTrack(newTrack){
+    if(playListTracks.find(savedTrack => savedTrack.id === newTrack.id)) {
+      return playListTracks;
+    }
+    setPlayListTracks((prevState) => {
+      return [...prevState, newTrack]
+    })
+  }
 
   return (
     <div>
@@ -33,8 +63,11 @@ function App() {
       <div className="App">
         <SearchBar></SearchBar>
         <div className="App-playlist">
-          <SearchResults searchResults={searchResults}></SearchResults>
-          <PlayList></PlayList>
+          <SearchResults searchResults={searchResults} onAdd={addTrack}></SearchResults>
+          <PlayList
+            playListName={playListName}
+            playListTracks={playListTracks}
+          ></PlayList>
         </div>
       </div>
     </div>

@@ -1,5 +1,4 @@
 export default function Track(props) {
-    let isRemoval = props.isRemoval
     function addTrack() {
         props.onAdd(props.track)
     }
@@ -15,7 +14,7 @@ export default function Track(props) {
                 <p>{props.track.artist} | {props.track.album}</p>
             </div>
             <button className="Track-action">
-                {isRemoval ? <span className="Track-action" onClick={removeTrack}>-</span> : <span className="Track-action" onClick={addTrack}>+</span>}
+                {props.isRemoval ? <span className="Track-action" onClick={removeTrack}>-</span> : <span className="Track-action" onClick={addTrack}>+</span>}
             </button>
         </div>
     )

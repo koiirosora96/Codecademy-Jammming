@@ -1,13 +1,13 @@
-export default function Track() {
+export default function Track(props) {
     const isRemoval = true
     return (
-        <div class="Track">
-            <div class="Track-information">
-                <h3> track name will go here</h3>
-                <p> track artist will go here track album will go here </p>
+        <div className="Track">
+            <div className="Track-information">
+                <h3>{props.track.name}</h3>
+                <p>{props.track.artist} | {props.track.album}</p>
             </div>
-            <button class="Track-action">
-                {isRemoval ? <button className="Track-action">-</button> : <button className="Track-action">+</button>}
+            <button className="Track-action">
+                {isRemoval ? <span className="Track-action">-</span> : <span className="Track-action">+</span>}
             </button>
         </div>
     )

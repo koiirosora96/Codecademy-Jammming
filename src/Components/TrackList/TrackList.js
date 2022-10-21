@@ -1,11 +1,10 @@
+import { useEffect } from "react";
 import Track from "../Track/Track";
 
-export default function TrackList() {
+export default function TrackList(props) {
     return (
-        <div class="TrackList">
-            {/* map Track array */}
-            <Track></Track>
-            <Track></Track>
+        <div className="TrackList">
+                {props.tracks?.map((track) => {return <Track track={track} key={track.id}></Track>})}
         </div>
     )
 }

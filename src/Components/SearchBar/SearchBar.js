@@ -4,7 +4,7 @@ export default function SearchBar (props) {
     const [term, setTerm] = useState("")
 
     function search() {
-        props.onSearch()
+        props.onSearch(term)
     }
 
     function handleTermChange(e) {

@@ -8,26 +8,7 @@ import SearchResults from './SearchResults/SearchResults';
 import Spotify from '../util/Spotify';
 
 function App() {
-  const [searchResults, setSearchResults] = useState([
-    {
-      name: "Tiny Dancer",
-      artist: "Elton John",
-      album: "Madman Across The Water",
-      id:1
-    },
-    {
-      name: "Tiny Dancer",
-      artist: "Tim McGraw",
-      album: "Love Story",
-      id:2
-    },
-    {
-      name: "Tiny Dancer",
-      artist: "Rockabye Baby!",
-      album: "Lullaby Renditions of Elton John",
-      id:3
-    }
-  ])
+  const [searchResults, setSearchResults] = useState([])
   const [playListName, setPlayListName] = useState("album of something!")
   const [playListTracks, setPlayListTracks] = useState([])
 
@@ -61,7 +42,7 @@ function App() {
   function search(term) {
     console.log("clicked")
     Spotify.search(term).then(searchResults => {
-      setSearchResults({searchResults: searchResults})
+      console.log(searchResults)
     })
   }
 

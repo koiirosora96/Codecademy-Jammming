@@ -5,48 +5,31 @@ import PlayList from './PlayList/PlayList';
 import SearchBar from './SearchBar/SearchBar';
 import SearchResults from './SearchResults/SearchResults';
 
+import Spotify from '../util/Spotify';
+
 function App() {
   const [searchResults, setSearchResults] = useState([
     {
-      singerName: "Tiny Dancer",
+      name: "Tiny Dancer",
       artist: "Elton John",
       album: "Madman Across The Water",
       id:1
     },
     {
-      singerName: "Tiny Dancer",
+      name: "Tiny Dancer",
       artist: "Tim McGraw",
       album: "Love Story",
       id:2
     },
     {
-      singerName: "Tiny Dancer",
+      name: "Tiny Dancer",
       artist: "Rockabye Baby!",
       album: "Lullaby Renditions of Elton John",
       id:3
-    },
+    }
   ])
   const [playListName, setPlayListName] = useState("album of something!")
-  const [playListTracks, setPlayListTracks] = useState([
-    {
-      singerName: "Tiny Dancer",
-      artist: "Elton John",
-      album: "Madman Across The Water",
-      id:4
-    },
-    {
-      singerName: "Tiny Dancer",
-      artist: "Tim McGraw",
-      album: "Love Story",
-      id:5
-    },
-    {
-      singerName: "Tiny Dancer",
-      artist: "Rockabye Baby!",
-      album: "Lullaby Renditions of Elton John",
-      id:6
-    },
-  ])
+  const [playListTracks, setPlayListTracks] = useState([])
 
   function addTrack(track){
     if(playListTracks.find(savedTrack => savedTrack.id === track.id)) {
@@ -67,11 +50,26 @@ function App() {
     return setPlayListName(playListName)
   }
 
+  function savePlayList() {
+    const tracksURIs = playListTracks.map(track => track.uri)
+    Spotify.savePlayList(playListName, tracksURIs).then(() => {
+        setPlayListName("New Playlist")
+        setPlayListTracks([])
+    })
+  }
+
+  function search(term) {
+    console.log("clicked")
+    Spotify.search(term).then(searchResults => {
+      setSearchResults({searchResults: searchResults})
+    })
+  }
+
   return (
     <div>
       <h1>Ja<span className="highlight">mmm</span>ing</h1>
       <div className="App">
-        <SearchBar></SearchBar>
+        <SearchBar onSearch={search}></SearchBar>
         <div className="App-playlist">
           <SearchResults searchResults={searchResults} onAdd={addTrack}></SearchResults>
           <PlayList
@@ -79,6 +77,7 @@ function App() {
             playListTracks={playListTracks}
             onRemove={removeTrack}
             onNameChange={updatePlaylistName}
+            onSave={savePlayList}
           ></PlayList>
         </div>
       </div>

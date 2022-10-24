@@ -1,17 +1,20 @@
 import Track from "../Track/Track";
 
 export default function TrackList(props) {
+    let data = Array.from(props.tracks)
     return (
         <div className="TrackList">
-                {props.tracks?.map((track) => {
-                    return <Track 
-                        track={track} 
-                        onAdd={props.onAdd}
-                        onRemove={props.onRemove}
-                        isRemoval={props.isRemoval} 
-                        key={track.id}>
-                    </Track>
-                    })}
+                {
+                    data.map(track => 
+                        <Track 
+                            track={track}
+                            key={track.id}
+                            onAdd={props.onAdd}
+                            onRemove={props.onRemove}
+                            isRemoval={props.isRemoval} 
+                        />
+                    )
+                }
         </div>
     )
 }

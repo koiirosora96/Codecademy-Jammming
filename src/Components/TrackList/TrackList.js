@@ -2,6 +2,7 @@ import Track from "../Track/Track";
 
 export default function TrackList(props) {
     let data = Array.from(props.tracks)
+    console.log("data of trackList : ", data)
     return (
         <div className="TrackList">
                 {

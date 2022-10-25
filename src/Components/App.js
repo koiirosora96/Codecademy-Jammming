@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import './App.css';
 import PlayList from './PlayList/PlayList';
@@ -40,11 +40,14 @@ function App() {
   }
 
   function search(term) {
-    console.log("clicked")
-    Spotify.search(term).then(searchResults => {
-      console.log(searchResults)
+    let results = searchResults
+    Spotify.search(term).then((searchResults,id) => {
+      results = searchResults
+      console.log(results)
+      setSearchResults(results)
     })
   }
+  console.warn("searchResults : ",searchResults)
 
   return (
     <div>

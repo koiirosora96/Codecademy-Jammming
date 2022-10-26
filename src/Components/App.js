@@ -30,7 +30,7 @@ function App() {
   function updatePlaylistName(playListName) {
     return setPlayListName(playListName)
   }
-
+  
   function savePlayList() {
     const tracksURIs = playListTracks.map(track => track.uri)
     Spotify.savePlayList(playListName, tracksURIs).then(() => {
@@ -40,11 +40,8 @@ function App() {
   }
 
   function search(term) {
-    let results = searchResults
-    Spotify.search(term).then((searchResults,id) => {
-      results = searchResults
-      console.log(results)
-      setSearchResults(results)
+    Spotify.search(term).then((searchResults) => {
+      setSearchResults(searchResults)
     })
   }
   console.warn("searchResults : ",searchResults)

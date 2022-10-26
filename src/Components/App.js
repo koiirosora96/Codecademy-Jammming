@@ -9,7 +9,7 @@ import Spotify from '../util/Spotify';
 
 function App() {
   const [searchResults, setSearchResults] = useState([])
-  const [playListName, setPlayListName] = useState("album of something!")
+  const [playListName, setPlayListName] = useState("New Playlist")
   const [playListTracks, setPlayListTracks] = useState([])
 
   function addTrack(track){

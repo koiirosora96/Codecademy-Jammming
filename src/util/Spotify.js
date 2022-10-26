@@ -1,5 +1,5 @@
 let clientId = '78819ef9231c4b91af5b306d281a0bc8';
-let redirectUri = 'http://';
+let redirectUri = 'http://localhost:3000/';
 
 let accessToken;
 
